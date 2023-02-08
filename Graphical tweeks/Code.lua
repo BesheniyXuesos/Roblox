@@ -538,13 +538,13 @@ if AtmosphereEnabled then
     end
     if Property == "Color" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereColor"] then
         local Table = Window.Flags["BRM5/Lighting/AtmosphereColor"]
-        local a = Color.fromHSV(table[1],table[2],table[3])
+        local a = Color.fromHSV(Table[1],Table[2],Table[3])
 
         Lighting.Atmosphere[Property] = a
     end
     if Property == "Decay" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereDecay"] then
         local Table = Window.Flags["BRM5/Lighting/AtmosphereDecay"]
-        local a = Color.fromHSV(table[1],table[2],table[3])
+        local a = Color.fromHSV(Table[1],Table[2],Table[3])
 
         Lighting.Atmosphere[Property] = a
     end
