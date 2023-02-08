@@ -19,10 +19,18 @@ Dof.Parent = Lighting
 
 local BrightnessEnabled = false
 local ExposureEnabled = false
+local AtmosphereEnabled = false
 
 local CameraName:string
 local EnabledButton
 local HeadCamEnabled = false
+
+local Density
+local Offset
+local Color
+local Decay
+local Glare
+local Haze
 
 local LightingBrightness
 local ClockTime 
@@ -349,6 +357,41 @@ local Tab4 = Window:Tab({Name = "DOF"}) do
      end
  end
 
+ local Tab7 = Window:Tab({Name = "Atmosphere"}) do
+    local Section7 = Tab7:Section({Name = "Atmosphere"}) do
+         
+        local AtmosphereEnabledButton = Section7:Toggle({Name = "Enabled",Flag = "AtmosphereEnabled",Value = false,Callback = function(Value) AtmosphereEnabled = Value end})
+        Density = Section7:Slider({Name = "Density",Flag = "BRM5/Lighting/AtmosphereDensity",Side = "Left",Min =0,Max = 1,Value = Lighting.Atmosphere.Density,Precise = 4,Unit = "",Callback = function(Value)
+             Lighting.Atmosphere.Density = Value
+        end})
+
+        Offset = Section7:Slider({Name = "Offset",Flag = "BRM5/Lighting/AtmosphereOffset",Side = "Left",Min =0,Max = 1,Value = Lighting.Atmosphere.Offset,Precise = 4,Unit = "",Callback = function(Value)
+            Lighting.Atmosphere.Offset = Value
+       end})
+
+       local hue,sat,val = Lighting.Atmosphere.Color:ToHSV()       
+
+        Color = Section7:Colorpicker({Name = "Color",Flag = "BRM5/Lighting/AtmosphereColor",Side = "Left",Value = {hue,sat,val,0,false},Callback = function(HSVAR_Table,Color3)  
+            Lighting.Atmosphere.Color = Color3
+       end})
+
+       local hue,sat,val = Lighting.Atmosphere.Color:ToHSV()   
+
+        Decay = Section7:Colorpicker({Name = "Decay",Flag = "BRM5/Lighting/AtmosphereDecay",Side = "Left",Value = {hue,sat,val,0,false},Callback = function(HSVAR_Table,Color3)  
+         Lighting.Atmosphere.Decay = Color3
+       end})
+         
+        Glare  = Section7:Slider({Name = "Glare",Flag = "BRM5/Lighting/AtmosphereGlare",Side = "Left",Min =0,Max = 10,Value = Lighting.Atmosphere.Glare,Precise = 4,Unit = "",Callback = function(Value)
+            Lighting.Atmosphere.Glare = Value
+        end})
+        
+        Haze  = Section7:Slider({Name = "Haze",Flag = "BRM5/Lighting/AtmosphereHaze",Side = "Left",Min =0,Max = 10,Value = Lighting.Atmosphere.Haze,Precise = 4,Unit = "",Callback = function(Value)
+            Lighting.Atmosphere.Haze = Value
+       end})
+
+     end
+ end
+
     local SettingsTab = Window:Tab({Name = "Settings"}) do
         local MenuSection = SettingsTab:Section({Name = "Menu",Side = "Left"}) do
             local UIToggle = MenuSection:Toggle({Name = "Enabled",IgnoreFlag = true,Flag = "UI/Toggle",
@@ -454,5 +497,76 @@ Lighting.Changed:Connect(function(Property)
     elseif not ExposureEnabled and ExposureCompensation ~= nil then
         ExposureCompensation.Value = Lighting.ExposureCompensation
     end
+end)
+
+Lighting.Changed:Connect(function(Property)
+    if Property == "OutdoorAmbient" and OutdoorAmbientEnabled and Lighting[Property] ~= OutdoorAmbientVal then
+        Lighting.OutdoorAmbient = OutdoorAmbientVal
+    end
+    if Property == "Brightness" and Window.Flags["BRM5/Lighting/Brightness"] and BrightnessEnabled and Lighting[Property] ~= Window.Flags["BRM5/Lighting/Brightness"] then
+        Lighting.Brightness = Window.Flags["BRM5/Lighting/Brightness"]
+    elseif not BrightnessEnabled and LightingBrightness ~= nil then
+        LightingBrightness.Value = Lighting.Brightness
+    end
+
+    if Property == "ClockTime" and Window.Flags["BRM5/Lighting/TimeEnabled"] and Lighting[Property] ~= Window.Flags["BRM5/Lighting/Time"] then
+        Lighting.ClockTime = Window.Flags["BRM5/Lighting/Time"]
+    elseif not Window.Flags["BRM5/Lighting/TimeEnabled"] and ClockTime~= nil then
+        ClockTime.Value = Lighting.ClockTime 
+    end
+
+    if Property == "ExposureCompensation" and Window.Flags["BRM5/Lighting/ExposureCompensation"] and Lighting[Property] ~= Window.Flags["BRM5/Lighting/ExposureCompensation"] and ExposureEnabled then
+        Lighting.ExposureCompensation = Window.Flags["BRM5/Lighting/ExposureCompensation"]
+    elseif not ExposureEnabled and ExposureCompensation ~= nil then
+        ExposureCompensation.Value = Lighting.ExposureCompensation
+    end
+end)
+
+Lighting.Atmosphere.Changed:Connect(function(Property)
+if AtmosphereEnabled then
+    -- local Density
+    -- local Offset
+    -- local Color
+    -- local Decay
+    -- local Glare
+    -- local Haze
+    if Property == "Density" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereDensity"] then
+        Lighting.Atmosphere[Property] = Window.Flags["BRM5/Lighting/AtmosphereDensity"]
+    end
+    if Property == "Offset" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereOffset"] then
+        Lighting.Atmosphere[Property] = Window.Flags["BRM5/Lighting/AtmosphereOffset"]
+    end
+    if Property == "Color" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereColor"] then
+        Lighting.Atmosphere[Property] = Window.Flags["BRM5/Lighting/AtmosphereColor"]
+    end
+    if Property == "Decay" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereDecay"] then
+        Lighting.Atmosphere[Property] = Window.Flags["BRM5/Lighting/AtmosphereDecay"]
+    end
+    if Property == "Glare" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereGlare"] then
+        Lighting.Atmosphere[Property] = Window.Flags["BRM5/Lighting/AtmosphereGlare"]
+    end
+    if Property == "Haze" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereHaze"] then
+        Lighting.Atmosphere[Property] = Window.Flags["BRM5/Lighting/AtmosphereHaze"]
+    end
+else
+    if Property == "Density" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereDensity"] then
+       Density.Value = Property
+    end
+    if Property == "Offset" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereOffset"] then
+        Offset.Value = Property
+    end
+    if Property == "Color" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereColor"] then
+        Color.Value = Property
+    end
+    if Property == "Decay" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereDecay"] then
+        Decay.Value = Property
+    end
+    if Property == "Glare" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereGlare"] then
+        Glare.Value = Property
+    end
+    if Property == "Haze" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereHaze"] then
+        Haze.Value = Property
+    end
+end
 end)
 
