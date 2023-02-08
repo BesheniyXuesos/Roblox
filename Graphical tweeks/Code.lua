@@ -537,10 +537,16 @@ if AtmosphereEnabled then
         Lighting.Atmosphere[Property] = Window.Flags["BRM5/Lighting/AtmosphereOffset"]
     end
     if Property == "Color" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereColor"] then
-        Lighting.Atmosphere[Property] = Window.Flags["BRM5/Lighting/AtmosphereColor"]
+        local Table = Window.Flags["BRM5/Lighting/AtmosphereColor"]
+        local a = Color.fromHSV(table[1],table[2],table[3])
+
+        Lighting.Atmosphere[Property] = a
     end
     if Property == "Decay" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereDecay"] then
-        Lighting.Atmosphere[Property] = Window.Flags["BRM5/Lighting/AtmosphereDecay"]
+        local Table = Window.Flags["BRM5/Lighting/AtmosphereDecay"]
+        local a = Color.fromHSV(table[1],table[2],table[3])
+
+        Lighting.Atmosphere[Property] = a
     end
     if Property == "Glare" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereGlare"] then
         Lighting.Atmosphere[Property] = Window.Flags["BRM5/Lighting/AtmosphereGlare"]
