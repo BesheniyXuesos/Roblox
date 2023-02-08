@@ -530,41 +530,41 @@ if AtmosphereEnabled then
     -- local Decay
     -- local Glare
     -- local Haze
-    if Property == "Density" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereDensity"] then
+    if Property == "Density" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereDensity"] then
         Lighting.Atmosphere[Property] = Window.Flags["BRM5/Lighting/AtmosphereDensity"]
     end
-    if Property == "Offset" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereOffset"] then
+    if Property == "Offset" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereOffset"] then
         Lighting.Atmosphere[Property] = Window.Flags["BRM5/Lighting/AtmosphereOffset"]
     end
-    if Property == "Color" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereColor"] then
+    if Property == "Color" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereColor"] then
         Lighting.Atmosphere[Property] = Window.Flags["BRM5/Lighting/AtmosphereColor"]
     end
-    if Property == "Decay" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereDecay"] then
+    if Property == "Decay" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereDecay"] then
         Lighting.Atmosphere[Property] = Window.Flags["BRM5/Lighting/AtmosphereDecay"]
     end
-    if Property == "Glare" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereGlare"] then
+    if Property == "Glare" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereGlare"] then
         Lighting.Atmosphere[Property] = Window.Flags["BRM5/Lighting/AtmosphereGlare"]
     end
-    if Property == "Haze" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereHaze"] then
+    if Property == "Haze" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereHaze"] then
         Lighting.Atmosphere[Property] = Window.Flags["BRM5/Lighting/AtmosphereHaze"]
     end
 else
-    if Property == "Density" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereDensity"] then
+    if Property == "Density" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereDensity"] then
        Density.Value = Property
     end
-    if Property == "Offset" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereOffset"] then
+    if Property == "Offset" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereOffset"] then
         Offset.Value = Property
     end
-    if Property == "Color" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereColor"] then
+    if Property == "Color" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereColor"] then
         Color.Value = Property
     end
-    if Property == "Decay" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereDecay"] then
+    if Property == "Decay" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereDecay"] then
         Decay.Value = Property
     end
-    if Property == "Glare" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereGlare"] then
+    if Property == "Glare" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereGlare"] then
         Glare.Value = Property
     end
-    if Property == "Haze" and Lighting[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereHaze"] then
+    if Property == "Haze" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereHaze"] then
         Haze.Value = Property
     end
 end
