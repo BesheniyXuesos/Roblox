@@ -67,7 +67,7 @@ function FindProperColorCorr()
     local find = false
     for _, v in pairs(Lighting:GetChildren()) do
         if v:IsA("ColorCorrectionEffect") then
-            if v.TintColor ~= Color3.fromRGB(255,255,255) and  v.TintColor ~= Color3.fromRGB(108, 255, 66) and v.Contrast ~= 0 then
+            if v.TintColor ~= Color3.fromRGB(255,255,255) and  v.TintColor ~= Color3.fromRGB(108, 255, 66) then
                 return v
             end
         end
@@ -388,6 +388,154 @@ local Tab4 = Window:Tab({Name = "DOF"}) do
         Haze  = Section7:Slider({Name = "Haze",Flag = "BRM5/Lighting/AtmosphereHaze",Side = "Left",Min =0,Max = 10,Value = Lighting.Atmosphere.Haze,Precise = 4,Unit = "",Callback = function(Value)
             Lighting.Atmosphere.Haze = Value
        end})
+
+     end
+ end
+
+ local Tab8 = Window:Tab({Name = "Skybox"}) do
+    local Section8 = Tab8:Section({Name = "Atmosphere"}) do
+         
+       local  MoonSize  = Section8:Slider({Name = "MoonAngularSize",Flag = "BRM5/Lighting/MoonSize",Side = "Left",Min =0,Max = 30,Value = Lighting:FindFirstChildOfClass("Sky").MoonAngularSize,Precise = 1,Unit = "",Callback = function(Value)
+            Lighting:FindFirstChildOfClass("Sky").MoonAngularSize = Value
+        end})
+
+        local  SunSize  = Section8:Slider({Name = "SunAngularSize",Flag = "BRM5/Lighting/SunSize",Side = "Left",Min =0,Max = 30,Value = Lighting:FindFirstChildOfClass("Sky").SunAngularSize,Precise = 1,Unit = "",Callback = function(Value)
+            Lighting:FindFirstChildOfClass("Sky").SunAngularSize = Value
+        end})
+
+        local  StarCount  = Section8:Slider({Name = "MoonAngularSize",Flag = "BRM5/Lighting/MoonSize",Side = "Left",Min =0,Max = 30,Value = Lighting:FindFirstChildOfClass("Sky").StarCount,Precise = 1,Unit = "",Callback = function(Value)
+            Lighting:FindFirstChildOfClass("Sky").StarCount = Value
+        end})
+
+        local Skyboxes = Section8:Dropdown({Name = "Skyboxes",Flag = "Skyboxes",Side = "Left",List = {
+            {Name = "ClearSky(Default)",Mode = "Button",Callback = function()
+               local SkyboxInfo = {
+                 "rbxassetid://6444884337",
+                 "rbxassetid://6444884785",
+                 "rbxassetid://6444884337",
+                 "rbxassetid://6444884337",
+                 "rbxassetid://6444884337",
+                 "rbxassetid://6412503613"
+             }
+             Lighting:FindFirstChildOfClass("Sky").SkyboxBk = SkyboxInfo[1]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxDn = SkyboxInfo[2]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxFt = SkyboxInfo[3]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxLf = SkyboxInfo[4]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxRt = SkyboxInfo[5]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxUp = SkyboxInfo[6]
+
+            end},
+            {Name = "Clear sky 1",Mode = "Button",Callback = function()
+                local SkyboxInfo = {
+                     "http://www.roblox.com/asset/?id=303823413",
+                     "http://www.roblox.com/asset/?id=303823574",
+                     "http://www.roblox.com/asset/?id=303823486",
+                     "http://www.roblox.com/asset/?id=303823455",
+                     "http://www.roblox.com/asset/?id=303823323",
+                     "http://www.roblox.com/asset/?id=303823523"
+                 }
+              
+                 Lighting:FindFirstChildOfClass("Sky").SkyboxBk = SkyboxInfo[1]
+                 Lighting:FindFirstChildOfClass("Sky").SkyboxDn = SkyboxInfo[2]
+                 Lighting:FindFirstChildOfClass("Sky").SkyboxFt = SkyboxInfo[3]
+                 Lighting:FindFirstChildOfClass("Sky").SkyboxLf = SkyboxInfo[4]
+                 Lighting:FindFirstChildOfClass("Sky").SkyboxRt = SkyboxInfo[5]
+                 Lighting:FindFirstChildOfClass("Sky").SkyboxUp = SkyboxInfo[6]
+ 
+             end},
+             {Name = "Clouds 2",Mode = "Button",Callback = function()
+                local SkyboxInfo = {
+                     "http://www.roblox.com/asset/?id=304058514",
+                     "http://www.roblox.com/asset/?id=304058829",
+                     "http://www.roblox.com/asset/?id=304058656",
+                     "http://www.roblox.com/asset/?id=304058559",
+                     "http://www.roblox.com/asset/?id=304058447",
+                     "http://www.roblox.com/asset/?id=304058723"
+                 }
+              
+             Lighting:FindFirstChildOfClass("Sky").SkyboxBk = SkyboxInfo[1]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxDn = SkyboxInfo[2]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxFt = SkyboxInfo[3]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxLf = SkyboxInfo[4]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxRt = SkyboxInfo[5]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxUp = SkyboxInfo[6]
+ 
+             end},
+             {Name = "3",Mode = "Button",Callback = function()
+                local SkyboxInfo = {
+                     "http://www.roblox.com/asset/?id=245754065",
+                     "http://www.roblox.com/asset/?id=245754317",
+                     "http://www.roblox.com/asset/?id=245754199",
+                     "http://www.roblox.com/asset/?id=245754133",
+                     "http://www.roblox.com/asset/?id=245754006",
+                     "http://www.roblox.com/asset/?id=245754270"
+                 }
+              
+             Lighting:FindFirstChildOfClass("Sky").SkyboxBk = SkyboxInfo[1]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxDn = SkyboxInfo[2]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxFt = SkyboxInfo[3]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxLf = SkyboxInfo[4]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxRt = SkyboxInfo[5]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxUp = SkyboxInfo[6]
+ 
+             end},
+             {Name = "4",Mode = "Button",Callback = function()
+                print("Aboba")
+                local SkyboxInfo = {
+                     "http://www.roblox.com/asset/?id=245712707",
+                     "http://www.roblox.com/asset/?id=245712765",
+                     "http://www.roblox.com/asset/?id=245712738",
+                     "http://www.roblox.com/asset/?id=245712715",
+                     "http://www.roblox.com/asset/?id=245712688",
+                     "http://www.roblox.com/asset/?id=245712749"
+                 }
+              
+             Lighting:FindFirstChildOfClass("Sky").SkyboxBk = SkyboxInfo[1]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxDn = SkyboxInfo[2]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxFt = SkyboxInfo[3]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxLf = SkyboxInfo[4]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxRt = SkyboxInfo[5]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxUp = SkyboxInfo[6]
+ 
+             end},
+             {Name = "Sunset",Mode = "Button",Callback = function()
+                local SkyboxInfo = {
+                     "rbxassetid://2673281689",
+                     "rbxassetid://2673282460",
+                     "rbxassetid://2673282334",
+                     "rbxassetid://2673281860",
+                     "rbxassetid://2673282008",
+                     "rbxassetid://2673282179"
+                 } 
+              
+             Lighting:FindFirstChildOfClass("Sky").SkyboxBk = SkyboxInfo[1]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxDn = SkyboxInfo[2]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxFt = SkyboxInfo[3]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxLf = SkyboxInfo[4]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxRt = SkyboxInfo[5]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxUp = SkyboxInfo[6]
+ 
+             end},
+
+             {Name = "Brm5",Mode = "Button",Callback = function()
+                local SkyboxInfo = {
+                     "rbxassetid://627331893",
+                     "rbxassetid://627331733",
+                     "rbxassetid://627331981",
+                     "rbxassetid://627331549",
+                     "rbxassetid://627331779",
+                     "rbxassetid://627332635"
+                 }
+              
+             Lighting:FindFirstChildOfClass("Sky").SkyboxBk = SkyboxInfo[1]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxDn = SkyboxInfo[2]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxFt = SkyboxInfo[3]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxLf = SkyboxInfo[4]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxRt = SkyboxInfo[5]
+             Lighting:FindFirstChildOfClass("Sky").SkyboxUp = SkyboxInfo[6]
+ 
+             end},
+        }})
 
      end
  end
