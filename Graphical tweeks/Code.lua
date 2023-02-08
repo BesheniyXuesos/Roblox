@@ -556,12 +556,17 @@ else
         Offset.Value = Lighting.Atmosphere.Offset
     end
     if Property == "Color" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereColor"] then
-        Color.Value = Lighting.Atmosphere.Color
+        local hue,sat,val = Lighting.Atmosphere.Color:ToHSV()   
+
+        Color.Value  = {hue,sat,val,0,false}
     end
     if Property == "Decay" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereDecay"] then
-        Decay.Value = Lighting.Atmosphere.Decay
+        local hue,sat,val = Lighting.Atmosphere.Decay:ToHSV()   
+
+        Decay.Value = {hue,sat,val,0,false}
     end
     if Property == "Glare" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereGlare"] then
+        
         Glare.Value = Lighting.Atmosphere.Glare
     end
     if Property == "Haze" and Lighting.Atmosphere[Property] ~= Window.Flags["BRM5/Lighting/AtmosphereHaze"] then
