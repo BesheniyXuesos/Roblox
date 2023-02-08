@@ -90,11 +90,16 @@ NewColorCor.Brightness = ColorCorrection.Brightness
 NewColorCor.Contrast = ColorCorrection.Contrast
 NewColorCor.Saturation = ColorCorrection.Saturation
 NewColorCor.TintColor = ColorCorrection.TintColor
-
 NewColorCor.Name = "CustomColorCorrection"
-
 NewColorCor.Parent = Lighting
 
+local Bloom = Instance.new("BloomEffect")
+Bloom.Enabled = false
+Bloom.Intensity = 0.25
+Bloom.Size = 56
+Bloom.Threshold = 0.2
+Bloom.Name = "CustomBloom"
+Bloom.Parent = Lighting
 
 
 while not ColorCorrection do
@@ -325,6 +330,25 @@ local Tab4 = Window:Tab({Name = "DOF"}) do
      end
  end
 
+ local Tab6 = Window:Tab({Name = "Bloom"}) do
+    local Section6 = Tab6:Section({Name = "Environment"}) do
+         EnabledButton = Section6:Toggle({Name = "Enabled",Flag = "BloomEnabled",Value = false,Callback = function(Value) Bloom.Enabled  = Value end})
+         
+         local Intensity = Section6:Slider({Name = "Intensity",Flag = "BRM5/Lighting/BloomIntensity",Side = "Left",Min =0,Max = 2,Value = Bloom.Intensity,Precise = 4,Unit = "",Callback = function(Value)
+           Bloom.Intensity = Value
+        end})
+
+        local Size = Section6:Slider({Name = "Size",Flag = "BRM5/Lighting/BloomSize",Side = "Left",Min =0,Max = 56,Value = Bloom.Size,Precise = 4,Unit = "",Callback = function(Value)
+            Bloom.Size = Value
+         end})
+
+         local Threshold = Section6:Slider({Name = "Threshold",Flag = "BRM5/Lighting/BloomThreshold",Side = "Left",Min =0,Max = 4,Value = Bloom.Threshold,Precise = 4,Unit = "",Callback = function(Value)
+            Bloom.Threshold = Value
+         end})
+         
+     end
+ end
+
     local SettingsTab = Window:Tab({Name = "Settings"}) do
         local MenuSection = SettingsTab:Section({Name = "Menu",Side = "Left"}) do
             local UIToggle = MenuSection:Toggle({Name = "Enabled",IgnoreFlag = true,Flag = "UI/Toggle",
@@ -399,6 +423,8 @@ RS.RenderStepped:Connect(function()
     if CameraName == nil then
         return
     end
+    local Character = game:GetService("Workspace").Characters:FindFirstChild(CameraName)
+    if not Character then return end
     Part = game:GetService("Workspace").Characters:FindFirstChild(CameraName).helmet.side
 
     if HeadCamEnabled and Part ~= nil then
