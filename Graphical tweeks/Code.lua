@@ -26,6 +26,7 @@ Clouds.Cover = 0.655
 Clouds.Density = 0.81
 Clouds.Color = Color3.fromRGB(255,255,255)
 Clouds.Enabled = false
+Clouds.Parent = game:GetService("Workspace").Terrain
 
 local CameraName:string
 local EnabledButton
