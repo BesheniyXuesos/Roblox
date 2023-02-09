@@ -549,7 +549,7 @@ local Tab4 = Window:Tab({Name = "DOF"}) do
  local Tab9 = Window:Tab({Name = "Clouds"}) do
     local Section9 = Tab9:Section({Name = "Clouds"}) do
          
-        local CloudsEnabled = Section7:Toggle({Name = "Enabled",Flag = "CloudsEnabled",Value = false,Callback = function(Value) Clouds.Enabled = Value end})
+        local CloudsEnabled = Section9:Toggle({Name = "Enabled",Flag = "CloudsEnabled",Value = false,Callback = function(Value) Clouds.Enabled = Value end})
 
         local Cover  = Section9:Slider({Name = "Cover",Flag = "BRM5/Lighting/CloudsCover",Side = "Left",Min =0,Max = 1,Value = Clouds.Cover,Precise = 4,Unit = "",Callback = function(Value)
              Clouds.Cover = Value
