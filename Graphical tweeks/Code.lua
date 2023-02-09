@@ -21,6 +21,12 @@ local BrightnessEnabled = false
 local ExposureEnabled = false
 local AtmosphereEnabled = false
 
+local Clouds = Instance.new("Clouds")
+Clouds.Cover = 0.655
+Clouds.Density = 0.81
+Clouds.Color = Color3.fromRGB(255,255,255)
+Clouds.Enabled = false
+
 local CameraName:string
 local EnabledButton
 local HeadCamEnabled = false
@@ -536,6 +542,28 @@ local Tab4 = Window:Tab({Name = "DOF"}) do
  
              end},
         }})
+
+     end
+ end
+
+ local Tab9 = Window:Tab({Name = "Clouds"}) do
+    local Section9 = Tab9:Section({Name = "Clouds"}) do
+         
+        local CloudsEnabled = Section7:Toggle({Name = "Enabled",Flag = "CloudsEnabled",Value = false,Callback = function(Value) Clouds.Enabled = Value end})
+
+        local Cover  = Section9:Slider({Name = "Cover",Flag = "BRM5/Lighting/CloudsCover",Side = "Left",Min =0,Max = 1,Value = Clouds.Cover,Precise = 4,Unit = "",Callback = function(Value)
+             Clouds.Cover = Value
+        end})
+
+        local Density  = Section9:Slider({Name = "Density",Flag = "BRM5/Lighting/CloudsDensity",Side = "Left",Min =0,Max = 1,Value = Clouds.Density,Precise = 4,Unit = "",Callback = function(Value)
+            Clouds.Density = Value
+       end})
+
+       local hue,sat,val = Clouds.Color:ToHSV()  
+       local Color  = Section9:Slider({Name = "Density",Flag = "BRM5/Lighting/CloudsDensity",Side = "Left",Min =0,Max = 1,Value = {hue,sat,val,0,false},Precise = 4,Unit = "",Callback = function(Table,Color)
+        Clouds.Color = Color
+   end})
+
 
      end
  end
