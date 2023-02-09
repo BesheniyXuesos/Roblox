@@ -561,7 +561,7 @@ local Tab4 = Window:Tab({Name = "DOF"}) do
        end})
 
        local hue,sat,val = Clouds.Color:ToHSV()  
-       local Color  = Section9:Slider({Name = "Density",Flag = "BRM5/Lighting/CloudsDensity",Side = "Left",Min =0,Max = 1,Value = {hue,sat,val,0,false},Precise = 4,Unit = "",Callback = function(Table,Color)
+       local Color  = Section9:Colorpicker({Name = "Color",Flag = "BRM5/Lighting/CloudsColor",Side = "Left",Value = {hue,sat,val,0,false},Callback = function(Table,Color)
         Clouds.Color = Color
    end})
 
