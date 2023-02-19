@@ -633,7 +633,7 @@ local Tab4 = Window:Tab({Name = "DOF"}) do
 end
 end
 Window:SetValue("Background/Offset",74)
-Window:LoadDefaultConfig("Bracket_Example")
+--Window:LoadDefaultConfig("Bracket_Example")
 Window:SetValue("UI/Toggle",Window.Flags["UI/OOL"])
 
 
